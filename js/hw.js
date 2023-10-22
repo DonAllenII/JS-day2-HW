@@ -21,28 +21,47 @@ let person3 = {
 const parse = function(person){
     for (let i = 0; i < Object.keys(person).length ;i++) {
         let type = Object.keys(person)[i];
-        console.log(type);
+        //console.log(type);
         console.log(typeof Object.values(person)[i]);
-        if (typeof Object.values(person)[i] == 'string') {
-            console.log(Object.values(person)[i]);
+        console.log(typeof Object.keys(person));
+        
+        switch (typeof Object.values(person)[i]){
+            case 'string':
+                console.log(Object.values(person)[i]);
+                break;
+
+            case 'array':
+                Object.values(person)[i].forEach((element) => console.log(element + " " + type));
+                break;
+                
+            //case 'object':
+                //let values = Object.values(Object.values(person)[i][0]);
+                //let keys = Object.keys(Object.values(person)[i][0]);
+                //for (let x = 0; x < keys.length; x++ ){
+                    //console.log(values[x] + " " + type + " from" + " " + keys[x]);;
+                }
+
         }
-        if (Array.isArray(Object.values(person)[i])) {
-            Object.values(person)[i].forEach((element) => console.log(element + " " + type));
+        //if (typeof Object.values(person)[i] == 'string') {
+            //console.log(Object.values(person)[i]);
+        //}
+        //if (Array.isArray(Object.values(person)[i])) {
+          //  Object.values(person)[i].forEach((element) => console.log(element + " " + type));
+        //}
+        //if (typeof Object.values(person)[i] == 'object') {
+          //  let values = Object.values(Object.values(person)[i][0]);
+           // let keys = Object.keys(Object.values(person)[i][0]);
+            //console.log(keys);
+            //console.log(values);
+            //for (let x = 0; x < keys.length; x++ ){
+              //  console.log(typeof keys[x]);
+                //if (typeof keys[x] == 'int'){
+                  //  console.log(values[x] + " " + type + " from" + " " + keys[x]);
+            //}
+            //}
+        //};
         }
-        if (typeof Object.values(person)[i] == 'object') {
-            console.log(Object.values(person)[i]);
-            console.log(Object.values(Object.values(person)[i][0]));
-            console.log(Object.keys(Object.values(person)[i][0]));
-            let values = Object.values(Object.values(person)[i][0]);
-            let keys = Object.keys(Object.values(person)[i][0]);
-            console.log(keys);
-            console.log(values);
-            for (let x = 0; x < keys.length; x++ ){
-                console.log(values[x] + " " + type + " from" + " " + keys[x]);
-            }
-        };
-        }
-        }
+        //}
     
 
 parse(person3);
@@ -59,11 +78,43 @@ age by 3 years. Use an arrow function for both methods
 
 // Create our Person Prototype
 
+function Person(name, age) {
+    this.name = name; 
+    this.age = age;
+
+    this.addAge = () => {
+        this.age += 1;
+     }
+
+    this.printInfo =() => {
+        console.log(`This is ${this.name}. ${this.age}years old.`);
+    }
+
+
 
 // Use an arrow to create the printInfo method
 
+
 // Create another arrow function for the addAge method that takes a single parameter
 // Adding to the age 
+
+
+
+
+let randy = new Person('Randy Moss', 38);
+randy.printInfo();
+randy.addAge();
+randy.addAge();
+randy.printInfo();
+
+const terrell = new Person('Terrell Owens', 38);
+terrell.printInfo();
+
+
+
+
+
+
 
 
 // =============Exercise #3 ============//
