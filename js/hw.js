@@ -89,7 +89,7 @@ function Person(name, age) {
     this.printInfo =() => {
         console.log(`This is ${this.name}. ${this.age}years old.`);
     }
-
+}
 
 
 // Use an arrow to create the printInfo method
@@ -124,3 +124,24 @@ terrell.printInfo();
     If the length is greater than ten console log "Big word". 
     If the length of the string is less than 10 console log "Small Number"
 */
+
+    function counter(string) {
+        return new Promise(async (resolve, reject) => {
+            if (string.length > 10) {
+                resolve(true);
+            } else {
+                reject(false);
+            }
+        });
+    }
+counter('alexanderhgjkhkjh')
+counter('alexander')
+
+.then((result) => {
+    console.log(`Big word ${result}`)
+})
+.catch((error) => {
+    console.log(`Small Number ${error}`)
+})
+
+
