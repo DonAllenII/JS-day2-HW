@@ -22,46 +22,36 @@ const parse = function(person){
     for (let i = 0; i < Object.keys(person).length ;i++) {
         let type = Object.keys(person)[i];
         //console.log(type);
-        console.log(typeof Object.values(person)[i]);
-        console.log(typeof Object.keys(person));
-        
-        switch (typeof Object.values(person)[i]){
-            case 'string':
-                console.log(Object.values(person)[i]);
-                break;
+        //console.log(typeof Object.values(person)[i]);
+        //console.log(typeof Object.keys(person));
 
-            case 'array':
-                Object.values(person)[i].forEach((element) => console.log(element + " " + type));
-                break;
-                
-            //case 'object':
-                //let values = Object.values(Object.values(person)[i][0]);
-                //let keys = Object.keys(Object.values(person)[i][0]);
-                //for (let x = 0; x < keys.length; x++ ){
-                    //console.log(values[x] + " " + type + " from" + " " + keys[x]);;
+        if (typeof Object.values(person)[i] == 'string') {
+            console.log(Object.values(person)[i]);
+        } else if (Array.isArray(Object.values(person)[i])) {
+            //console.log(Object.values(person)[i][0])
+            //console.log(typeof Object.values(person)[i][0])
+            if (typeof Object.values(person)[i][0] != 'string') {
+                let values = Object.values(Object.values(person)[i][0]);
+                let keys = Object.keys(Object.values(person)[i][0]);
+                //console.log(keys);
+                //console.log(values);
+                //console.log('right here');
+                for (let x = 0; x < keys.length; x++ ){
+                    //console.log(typeof keys[x]);
+                    console.log(values[x] + " " + type + " from" + " " + keys[x]);
                 }
-
+            } else if (type.includes('_')){
+                type = type.split('');
+                type.splice(3,1,' ');
+                type = type.join('');
+                Object.values(person)[i].forEach((element) => console.log(element + " " + type));
+            } else {
+                Object.values(person)[i].forEach((element) => console.log(element + " " + type));
+            }
+            //Object.values(person)[i].forEach((element) => console.log(element + " " + type));
         }
-        //if (typeof Object.values(person)[i] == 'string') {
-            //console.log(Object.values(person)[i]);
-        //}
-        //if (Array.isArray(Object.values(person)[i])) {
-          //  Object.values(person)[i].forEach((element) => console.log(element + " " + type));
-        //}
-        //if (typeof Object.values(person)[i] == 'object') {
-          //  let values = Object.values(Object.values(person)[i][0]);
-           // let keys = Object.keys(Object.values(person)[i][0]);
-            //console.log(keys);
-            //console.log(values);
-            //for (let x = 0; x < keys.length; x++ ){
-              //  console.log(typeof keys[x]);
-                //if (typeof keys[x] == 'int'){
-                  //  console.log(values[x] + " " + type + " from" + " " + keys[x]);
-            //}
-            //}
-        //};
-        }
-        //}
+    }
+}
     
 
 parse(person3);
@@ -145,3 +135,22 @@ counter('alexander')
 })
 
 
+// Code Wars Original JS Exercise//
+
+function digitalRoot(n) {
+    //turn n to a string
+    var n = n.toString();
+    //check if n is longer than one digit
+    while (n.toString().length > 1) {
+      let count = 0;
+      //turn n into a list of strings
+      let number = n.toString().split('');
+      //iterate thru list, summing digits 
+      for (let digit of number) {
+        count += parseInt(digit);
+      }
+      //assign new number to n
+      n = count;
+    }
+    return parseInt(n);
+  }
